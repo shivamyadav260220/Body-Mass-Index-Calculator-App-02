@@ -1,8 +1,13 @@
 ﻿using System;
+using Body_Mass_Index_Calculator;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Hosting;
 public class BMICalculator
 {
     public static void Main(String[] args)
     {
+        CreateHostBuilder(args).Build().Run();
+
         Console.Write("Choose measurement system (1 for metric, 2 for imperial): ");
         int system = int.Parse(Console.ReadLine());
 
@@ -13,7 +18,6 @@ public class BMICalculator
         {
             heightUnit = "metres";
             weightUnit = "kilograms";
-
             //Ask for the input from the user for metric weights
             Console.Write("Enter your height in metres: ");
             height = double.Parse(Console.ReadLine());
@@ -50,6 +54,14 @@ public class BMICalculator
             return;
         }
     }
+
+    public static IHostBuilder CreateHostBuilder(string[] args) =>
+                Host.CreateDefaultBuilder(args)
+                    .ConfigureWebHostDefaults(webBuilder =>
+                    {
+                        webBuilder.UseStartup<Startup>();
+                    });
+
     //Function to parse input and calculate the BMI in metric weights
     static void calculate_bmi_metric(double h, double w)
     {
@@ -85,7 +97,6 @@ public class BMICalculator
 
         Console.WriteLine("If you are Black, Asian or other minority ethnic groups, you have a higer risk. Adult 23. or more are at increased risk Adults 27.5 or more at high risk\r\n");
     }
-
     //Function to parse input and calculate the BMI in Imperial weights
     static void calculate_bmi_imperial(double heightFeet, double heightInches, double weightStones, double weightPounds)
     {
