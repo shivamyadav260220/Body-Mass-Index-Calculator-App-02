@@ -6,7 +6,7 @@ public class BMICalculator
 {
     public static void Main(String[] args)
     {
-        CreateHostBuilder(args).Build().Run();
+        //CreateHostBuilder(args).Build().Run();
 
         Console.Write("Choose measurement system (1 for metric, 2 for imperial): ");
         int system = int.Parse(Console.ReadLine());
@@ -55,12 +55,12 @@ public class BMICalculator
         }
     }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
+  /*  public static IHostBuilder CreateHostBuilder(string[] args) =>
                 Host.CreateDefaultBuilder(args)
                     .ConfigureWebHostDefaults(webBuilder =>
                     {
                         webBuilder.UseStartup<Startup>();
-                    });
+                    }); */
 
     //Function to parse input and calculate the BMI in metric weights
     static void calculate_bmi_metric(double h, double w)
